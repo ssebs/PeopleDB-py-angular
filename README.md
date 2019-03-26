@@ -28,11 +28,16 @@ Person Database using python, flask, sqlite3, and Angular.
 ## Running Dev
 > You'll need two terminals open
 - `$ make api`
+    - ^ Will run python flask server (:5000)
 - `$ make frontend`
+    - ^ Will run angular live dev server (:4200)
 
 ## Building
-
+- Frontend:
+    - tbd~~`$ make build`~~
+- Backend: (TEMP)
+    - `$ nohup /usr/bin/python3 /var/www/PeopleDB-py-react/flask-ppl-api-main.py &`
+    - TODO: `nohup gunicorn main:app -b 0.0.0.0:5000 &`
 
 ## Screenshots
-
-
+tbd

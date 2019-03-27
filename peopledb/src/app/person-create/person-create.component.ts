@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Person } from '../person';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-person-create',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonCreateComponent implements OnInit {
 
-  constructor() { }
+  personForm = this.fb.group({
+    first: ['', Validators.required],
+    last: ['', Validators.required],
+    email: ['', Validators.required]
+  });
+
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    const first = this.personForm.controls.first.value;
+    const last = this.personForm.controls.last.value;
+    const email = this.personForm.controls.email.value;
+
+    const newPerson: Person = new Person(first, last, email);
+
+
+
+    console.log(newPerson);
   }
 
 }

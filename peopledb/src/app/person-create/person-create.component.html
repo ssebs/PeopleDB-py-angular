@@ -1,3 +1,20 @@
-<p>
-  person-create works!
-</p>
+<div class="container">
+    <h1>Create a New Person</h1>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut nisl velit. Donec sed tempus urna. 
+    </p>
+    <hr/>
+    <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+      <label for="first">First:</label>
+      <input type="text" id="first" formControlName="first" required/> <br/>
+
+      <label for="last">Last:</label>
+      <input type="text" id="last" formControlName="last" required/> <br/>
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" formControlName="email" required/> <br/>
+
+      <button type="submit" [disabled]="!personForm.valid" >Submit</button>
+
+    </form>
+</div>

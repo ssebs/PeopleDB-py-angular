@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { PersonService } from '../person.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Person } from '../person';
+import { ApiResponse } from '../api-response';
 
 @Component({
   selector: 'app-person-detail',
@@ -12,6 +13,7 @@ import { Person } from '../person';
 export class PersonDetailComponent implements OnInit {
 
   person: Person;
+  personId: number;
 
   personForm = this.fb.group({
     first: ['', Validators.required],
@@ -36,7 +38,7 @@ export class PersonDetailComponent implements OnInit {
             // window.alert("No user with that id!");
             this.router.navigateByUrl("/home");
           }
-
+          this.personId = +params.get('id');
           this.person = pers;
           this.personForm.controls.first.setValue(pers.first);
           this.personForm.controls.last.setValue(pers.last);
@@ -49,6 +51,20 @@ export class PersonDetailComponent implements OnInit {
     if (!window.confirm("Are you sure you want to submit?")) {
       return;
     }
+
+    this.person.first = this.personForm.controls.first.value;
+    this.person.last = this.personForm.controls.last.value;
+    this.person.email = this.personForm.controls.email.value;
+    console.log(this.person);
+
+    this.prsnSvc.updatePerson(this.person, this.personId)
+    .subscribe((resp: ApiResponse) => {
+      console.log(resp);
+      if (resp.status === "OK") {
+        window.alert("Updated!");
+      }
+    });
+
   }
 
 }

@@ -27,4 +27,9 @@ export class PersonService {
     return this.http.post(`${this.baseUrl}/people/create`, person);
   }
 
+  updatePerson(person: Person, id: number):  Observable<Object> {
+    console.log(`Updating person #${id}`);
+    return this.http.patch(`${this.baseUrl}/people/update`, {...person, id})
+  }
+
 }

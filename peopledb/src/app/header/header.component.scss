@@ -1,0 +1,29 @@
+$primaryColor: #41afff;
+$secondaryColor: #2a83c3;
+
+$primaryTextColor: #0a0a0a;
+$secondaryTextColor: #fefefe;
+
+header {
+  background-color: $primaryColor;
+  border-bottom: 2px solid $secondaryColor;
+}
+a {
+  font-weight: bold;
+  font-size: 1.25em;
+  margin: 0px 10px;
+  float: right;
+  padding: 10px;
+  border-bottom: 5px solid transparent;
+  color: $secondaryTextColor;
+  text-decoration: none;
+}
+
+#home-link {
+  margin-left: 0px;
+  float: left; 
+  border-bottom: 5px solid transparent;
+}
+.active {
+  border-bottom: 5px solid $secondaryColor;
+}

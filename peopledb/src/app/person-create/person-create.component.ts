@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Person } from '../person';
 import { FormBuilder, Validators } from '@angular/forms';
+import { PersonService } from '../person.service';
 
 @Component({
   selector: 'app-person-create',
@@ -16,21 +17,27 @@ export class PersonCreateComponent implements OnInit {
   });
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private prsnSvc: PersonService) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
+    if (!window.confirm("Are you sure you want to submit?")) {
+      return;
+    }
+
     const first = this.personForm.controls.first.value;
     const last = this.personForm.controls.last.value;
     const email = this.personForm.controls.email.value;
 
-    const newPerson: Person = new Person(first, last, email);
+    this.prsnSvc.createPerson(new Person(first, last, email))
+      .subscribe(resp => {
+        console.log(resp);
+        // TODO: window.location = `/detail/${resp.id}`
+      });
+    ;
 
-
-
-    console.log(newPerson);
   }
 
 }

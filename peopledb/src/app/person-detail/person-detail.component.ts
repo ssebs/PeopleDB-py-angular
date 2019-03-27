@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PersonService } from '../person.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Person } from '../person';
 
 @Component({
@@ -23,7 +23,8 @@ export class PersonDetailComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private prsnSvc: PersonService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -31,7 +32,11 @@ export class PersonDetailComponent implements OnInit {
     this.route.paramMap.subscribe(
       (params: ParamMap) =>
         this.prsnSvc.getPerson(+params.get('id')).subscribe(pers => {
-          
+          if (Object.keys(pers).length === 0) {
+            // window.alert("No user with that id!");
+            this.router.navigateByUrl("/home");
+          }
+
           this.person = pers;
           this.personForm.controls.first.setValue(pers.first);
           this.personForm.controls.last.setValue(pers.last);

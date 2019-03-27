@@ -11,7 +11,7 @@ header {
 }
 a {
   font-weight: bold;
-  font-size: 1.25em;
+  font-size: 1.15em;
   margin: 0px 10px;
   float: right;
   padding: 10px;
@@ -24,6 +24,7 @@ a {
   margin-left: 0px;
   float: left;
   border-bottom: 5px solid transparent;
+  font-size: 1.5em;
 }
 .active {
   border-bottom: 5px solid $secondaryColor;

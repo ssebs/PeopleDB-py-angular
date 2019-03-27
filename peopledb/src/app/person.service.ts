@@ -18,14 +18,12 @@ export class PersonService {
   }
 
   getPerson(id: number): Observable<Person> {
-    // const tmp = new Person("john", "Smith", "eml@ssebs.com");
-    // return of(tmp);
-    return this.http.get<Person>(`${this.baseUrl}/people/${id}`)
+    console.log(`Getting person with id: ${id}`);
+    return this.http.get<Person>(`${this.baseUrl}/people/${id}`);
   }
 
   createPerson(person: Person): Observable<Object> {
     console.log("Creating new person!");
-    console.log(person);
     return this.http.post(`${this.baseUrl}/people/create`, person);
   }
 

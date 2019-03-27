@@ -11,6 +11,9 @@
       <input type="text" id="email" formControlName="email" required/> <br/>
 
       <button type="submit" [disabled]="!personForm.valid" >Submit</button>
-
     </form>
+    
+    <div>
+      <button (click)="onDelete()">Delete Person</button>
+    </div>
 </div>

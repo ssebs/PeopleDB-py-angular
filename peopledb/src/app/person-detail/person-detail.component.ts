@@ -58,13 +58,33 @@ export class PersonDetailComponent implements OnInit {
     console.log(this.person);
 
     this.prsnSvc.updatePerson(this.person, this.personId)
+      .subscribe((resp: ApiResponse) => {
+        console.log(resp);
+        if (resp.status === "OK") {
+          window.alert("Updated!");
+        }
+      });
+
+  } // onSubmit()
+
+  onDelete() {
+    if (!window.confirm("Are you sure you want to delete this person?")) {
+      return;
+    }
+    if (!window.confirm("Are you REALLY sure?")) {
+      return;
+    }
+
+    // console.log(`Deleting #${this.personId}`);
+    this.prsnSvc.deletePerson(this.personId)
     .subscribe((resp: ApiResponse) => {
       console.log(resp);
-      if (resp.status === "OK") {
-        window.alert("Updated!");
-      }
+      // if (resp.status === "OK") {
+      //   window.alert("Updated!");
+      // }
     });
 
-  }
+
+  } // onDelete()
 
 }

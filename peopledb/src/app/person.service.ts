@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Person } from './person';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -30,6 +30,19 @@ export class PersonService {
   updatePerson(person: Person, id: number):  Observable<Object> {
     console.log(`Updating person #${id}`);
     return this.http.patch(`${this.baseUrl}/people/update`, {...person, id})
+  }
+
+  deletePerson(id: number): Observable<Object> {
+    console.log(`Deleting person #${id}`);
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        "id": id.toString()
+      },
+    }
+    return this.http.delete(`${this.baseUrl}/people/delete`);
   }
 
 }

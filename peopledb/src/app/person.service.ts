@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Person } from './person';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,12 @@ export class PersonService {
 
   getPeople(qry: string): Person[] {
     return [];
+  }
+
+  getPerson(id: number): Observable<Person> {
+    // const tmp = new Person("john", "Smith", "eml@ssebs.com");
+    // return of(tmp);
+    return this.http.get<Person>(`${this.baseUrl}/people/${id}`)
   }
 
   createPerson(person: Person): Observable<Object> {

@@ -1,3 +1,16 @@
-<p>
-  person-detail works!
-</p>
+<div class="container">
+  <h1>{{person?.first}}'s info</h1>
+  <form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+      <label for="first">First:</label>
+      <input type="text" id="first" formControlName="first" required/> <br/>
+
+      <label for="last">Last:</label>
+      <input type="text" id="last" formControlName="last" required/> <br/>
+
+      <label for="email">Email:</label>
+      <input type="text" id="email" formControlName="email" required/> <br/>
+
+      <button type="submit" [disabled]="!personForm.valid" >Submit</button>
+
+    </form>
+</div>
